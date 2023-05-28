@@ -9,11 +9,12 @@ async function toggleTodo(id: string, complete: boolean) {
   "use server";
   await prisma.todo.update({ where: { id }, data: { complete } });
 }
+async function deleteTodo(id: string) {}
 export default async function Home() {
   // await prisma.todo.create({ data: { title: "test", complete: false } });
   const todos = await getTodos();
   return (
-    <>
+    <div>
       <header className="flex items-center justify-between mb-4">
         <h1 className="text-2xl">Todos</h1>
         <Link
@@ -28,6 +29,6 @@ export default async function Home() {
           return <TodoItem key={todo.id} {...todo} toggleTodo={toggleTodo} />;
         })}
       </ul>
-    </>
+    </div>
   );
 }
